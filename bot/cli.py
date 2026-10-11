@@ -120,6 +120,27 @@ def cmd_status(args, cfg) -> None:
     print(json.dumps(summary, ensure_ascii=False))
 
 
+def cmd_check_ig(args, cfg) -> None:
+    """投稿はせず、トークンが有効か・投稿枠の残りを確認する。"""
+    import requests
+    from .config import secret
+    from .publish import IG_API
+
+    token = secret("IG_ACCESS_TOKEN", required=False)
+    if not token:
+        print("NG: IG_ACCESS_TOKEN が未設定です")
+        raise SystemExit(1)
+    r = requests.get(f"{IG_API}/me", params={"fields": "user_id,username,account_type", "access_token": token}, timeout=30)
+    if r.status_code != 200:
+        print(f"NG: トークンが無効です（{r.status_code}）: {r.text[:300]}")
+        raise SystemExit(1)
+    me = r.json()
+    print(f"OK: @{me.get('username')}（{me.get('account_type')}）user_id={me.get('user_id')}")
+    q = requests.get(f"{IG_API}/{me['user_id']}/content_publishing_limit",
+                     params={"fields": "quota_usage,config", "access_token": token}, timeout=30)
+    print(f"投稿枠: {q.text[:300]}")
+
+
 def cmd_preview_feed(args, cfg) -> None:
     from PIL import Image
 
@@ -142,9 +163,10 @@ def main() -> None:
     p = sub.add_parser("publish"); p.add_argument("--dry-run", action="store_true")
     sub.add_parser("status")
     sub.add_parser("preview-feed")
+    sub.add_parser("check-ig")
     args = ap.parse_args()
     cfg = load_config()
-    {"run": cmd_run, "publish": cmd_publish, "status": cmd_status, "preview-feed": cmd_preview_feed}[args.cmd](args, cfg)
+    {"run": cmd_run, "publish": cmd_publish, "status": cmd_status, "preview-feed": cmd_preview_feed, "check-ig": cmd_check_ig}[args.cmd](args, cfg)
 
 
 if __name__ == "__main__":

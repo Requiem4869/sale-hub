@@ -45,7 +45,21 @@ h1{font-size:1.4rem;margin:.2em 0}.pr{display:inline-block;background:var(--acce
 .off{color:var(--accent);font-weight:700}.ts{color:var(--muted);font-size:.75rem}
 .btn{display:block;text-align:center;margin-top:8px;padding:9px;border-radius:999px;background:var(--accent);color:#fff;text-decoration:none;font-weight:700}
 footer{color:var(--muted);font-size:.75rem}
+.hero{padding:8px 0 4px}.hero p{margin:.3em 0}
+h2{font-size:1.1rem;margin:28px 0 12px;padding-left:10px;border-left:4px solid var(--accent)}
+.empty{background:var(--card);border:1px dashed var(--line);border-radius:12px;padding:20px;text-align:center;color:var(--muted)}
+.cal{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.cal li{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;display:flex;gap:14px;align-items:baseline}
+.cal b{color:var(--accent);min-width:3.2em}.cal small{color:var(--muted);margin-left:auto}
+.tips{padding-left:1.2em}.tips li{margin:.4em 0}
+.ig{display:inline-block;margin-top:6px;padding:9px 18px;border-radius:999px;border:1px solid var(--accent);color:var(--accent);text-decoration:none;font-weight:700}
 """
+
+CALENDAR = [("1月", "初売り", "冬物・福袋"), ("3月", "新生活セール", "通勤靴・バッグ"), ("7月", "プライムデー", "夏物・定番品"),
+            ("10月", "プライム感謝祭", "秋冬ブーツ"), ("11月", "ブラックフライデー", "年間で最大級")]
+TIPS = ["サイズ感はレビューの「大きめ」「小さめ」の声を確認する",
+        "サイズが合わないときに備えて、返品・交換の条件を購入前に見る",
+        "合成皮革は雨に強くお手入れが簡単、本革は長く使えて足になじむ"]
 
 
 def _jst(iso: str) -> str:
@@ -73,14 +87,24 @@ def _manual_card(p: dict) -> str:
 def build_site(out_dir: Path, cfg: dict, deals: list[Deal], manual_picks: list[dict], now: datetime) -> Path:
     name = html.escape(cfg["brand"]["account_name"])
     cards = "\n".join(_card(d) for d in deals) + "\n".join(_manual_card(p) for p in manual_picks)
-    if not cards:
-        cards = "<p>現在掲載中のセール商品はありません。次の更新をお待ちください。</p>"
+    items = f'<div class="grid">{cards}</div>' if cards else \
+        '<div class="empty">ただいま掲載中のアイテムはありません。<br>セールが始まったら、ここに一覧で掲載します。</div>'
+    ig = html.escape(cfg["brand"].get("instagram_url", ""))
+    ig_btn = f'<a class="ig" href="{ig}" target="_blank" rel="noopener">Instagramでセール開始をチェック</a>' if ig else ""
+    cal = "".join(f"<li><b>{m}</b>{html.escape(n)}<small>{html.escape(t)}</small></li>" for m, n, t in CALENDAR)
+    tips = "".join(f"<li>{html.escape(t)}</li>" for t in TIPS)
     page = f"""<!doctype html><html lang="ja"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"><title>{name}</title>
 <meta name="robots" content="index,follow"><style>{CSS}</style></head><body>
 <header><span class="pr">PR</span><h1>{name}</h1>
 <p>{PR_NOTICE}</p><p class="updated">最終更新：{now.astimezone(JST).strftime('%Y年%-m月%-d日 %H:%M')}（1時間ごとに自動更新）</p></header>
-<main><div class="grid">{cards}</div></main>
+<main>
+<section class="hero"><p>20〜40代の女性に向けて、Amazonで見つけたレディースの靴・バッグ・お財布のセール情報をまとめています。</p>{ig_btn}</section>
+<h2>掲載中のアイテム</h2>{items}
+<h2>Amazonの大型セール 年間カレンダー</h2><ul class="cal">{cal}</ul>
+<p class="ts">※開催時期は例年の目安です。年によって変わります。</p>
+<h2>Amazonで靴やバッグを買うときのコツ</h2><ol class="tips">{tips}</ol>
+</main>
 <footer id="disclaimer"><p>{ASSOCIATE_NOTICE}</p><p>{PRICE_DISCLAIMER}</p><p>{CONTENT_DISCLAIMER}</p></footer>
 </body></html>"""
     out_dir.mkdir(parents=True, exist_ok=True)

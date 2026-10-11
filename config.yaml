@@ -45,5 +45,6 @@ publishing:
     stories_per_day: 1        # 1日1枚のお知らせ画像（商品写真は使わない）
 
 brand:
+  instagram_url: "https://www.instagram.com/trend.information/"
   account_name: "トレンド発信局｜レディース靴・バッグのセール"
   hashtags: ["#Amazonセール", "#レディースファッション", "#プチプラ"]

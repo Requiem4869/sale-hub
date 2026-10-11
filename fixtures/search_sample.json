@@ -1,0 +1,1429 @@
+{
+ "searchResult": {
+  "items": [
+   {
+    "asin": "B0TEST0001",
+    "detailPageURL": "https://www.amazon.co.jp/dp/B0TEST0001?tag=yourtag-22&linkCode=ogi&th=1&psc=1",
+    "images": {
+     "primary": {
+      "large": {
+       "url": "https://m.media-amazon.com/images/I/placeholder.jpg",
+       "width": 500,
+       "height": 500
+      }
+     }
+    },
+    "itemInfo": {
+     "title": {
+      "displayValue": "[テスト商品] レディース スニーカー サンプル1"
+     },
+     "byLineInfo": {
+      "brand": {
+       "displayValue": "SAMPLE"
+      }
+     }
+    },
+    "offersV2": {
+     "listings": [
+      {
+       "availability": {
+        "type": "IN_STOCK"
+       },
+       "condition": {
+        "value": "New"
+       },
+       "isBuyBoxWinner": true,
+       "price": {
+        "money": {
+         "amount": 4537,
+         "currency": "JPY",
+         "displayAmount": "￥4,537"
+        },
+        "savingBasis": {
+         "money": {
+          "amount": 6980,
+          "currency": "JPY",
+          "displayAmount": "￥6,980"
+         },
+         "savingBasisType": "WAS_PRICE"
+        },
+        "savings": {
+         "money": {
+          "amount": 2443,
+          "currency": "JPY"
+         },
+         "percentage": 35
+        }
+       },
+       "dealDetails": {
+        "accessType": "ALL",
+        "badge": "タイムセール",
+        "endTime": "2026-10-11T14:59Z"
+       }
+      }
+     ]
+    }
+   },
+   {
+    "asin": "B0TEST0002",
+    "detailPageURL": "https://www.amazon.co.jp/dp/B0TEST0002?tag=yourtag-22&linkCode=ogi&th=1&psc=1",
+    "images": {
+     "primary": {
+      "large": {
+       "url": "https://m.media-amazon.com/images/I/placeholder.jpg",
+       "width": 500,
+       "height": 500
+      }
+     }
+    },
+    "itemInfo": {
+     "title": {
+      "displayValue": "[テスト商品] レディース スニーカー サンプル2"
+     },
+     "byLineInfo": {
+      "brand": {
+       "displayValue": "SAMPLE"
+      }
+     }
+    },
+    "offersV2": {
+     "listings": [
+      {
+       "availability": {
+        "type": "IN_STOCK"
+       },
+       "condition": {
+        "value": "New"
+       },
+       "isBuyBoxWinner": true,
+       "price": {
+        "money": {
+         "amount": 3884,
+         "currency": "JPY",
+         "displayAmount": "￥3,884"
+        },
+        "savingBasis": {
+         "money": {
+          "amount": 4980,
+          "currency": "JPY",
+          "displayAmount": "￥4,980"
+         },
+         "savingBasisType": "WAS_PRICE"
+        },
+        "savings": {
+         "money": {
+          "amount": 1096,
+          "currency": "JPY"
+         },
+         "percentage": 22
+        }
+       }
+      }
+     ]
+    }
+   },
+   {
+    "asin": "B0TEST0003",
+    "detailPageURL": "https://www.amazon.co.jp/dp/B0TEST0003?tag=yourtag-22&linkCode=ogi&th=1&psc=1",
+    "images": {
+     "primary": {
+      "large": {
+       "url": "https://m.media-amazon.com/images/I/placeholder.jpg",
+       "width": 500,
+       "height": 500
+      }
+     }
+    },
+    "itemInfo": {
+     "title": {
+      "displayValue": "[テスト商品] レディース スニーカー サンプル3"
+     },
+     "byLineInfo": {
+      "brand": {
+       "displayValue": "SAMPLE"
+      }
+     }
+    },
+    "offersV2": {
+     "listings": [
+      {
+       "availability": {
+        "type": "IN_STOCK"
+       },
+       "condition": {
+        "value": "New"
+       },
+       "isBuyBoxWinner": true,
+       "price": {
+        "money": {
+         "amount": 3486,
+         "currency": "JPY",
+         "displayAmount": "￥3,486"
+        },
+        "savingBasis": {
+         "money": {
+          "amount": 4980,
+          "currency": "JPY",
+          "displayAmount": "￥4,980"
+         },
+         "savingBasisType": "WAS_PRICE"
+        },
+        "savings": {
+         "money": {
+          "amount": 1494,
+          "currency": "JPY"
+         },
+         "percentage": 30
+        }
+       }
+      }
+     ]
+    }
+   },
+   {
+    "asin": "B0TEST0004",
+    "detailPageURL": "https://www.amazon.co.jp/dp/B0TEST0004?tag=yourtag-22&linkCode=ogi&th=1&psc=1",
+    "images": {
+     "primary": {
+      "large": {
+       "url": "https://m.media-amazon.com/images/I/placeholder.jpg",
+       "width": 500,
+       "height": 500
+      }
+     }
+    },
+    "itemInfo": {
+     "title": {
+      "displayValue": "[テスト商品] レディース スニーカー サンプル4"
+     },
+     "byLineInfo": {
+      "brand": {
+       "displayValue": "SAMPLE"
+      }
+     }
+    },
+    "offersV2": {
+     "listings": [
+      {
+       "availability": {
+        "type": "OUT_OF_STOCK"
+       },
+       "condition": {
+        "value": "New"
+       },
+       "isBuyBoxWinner": true,
+       "price": {
+        "money": {
+         "amount": 8960,
+         "currency": "JPY",
+         "displayAmount": "￥8,960"
+        },
+        "savingBasis": {
+         "money": {
+          "amount": 12800,
+          "currency": "JPY",
+          "displayAmount": "￥12,800"
+         },
+         "savingBasisType": "WAS_PRICE"
+        },
+        "savings": {
+         "money": {
+          "amount": 3840,
+          "currency": "JPY"
+         },
+         "percentage": 30
+        }
+       }
+      }
+     ]
+    }
+   },
+   {
+    "asin": "B0TEST0005",
+    "detailPageURL": "https://www.amazon.co.jp/dp/B0TEST0005?tag=yourtag-22&linkCode=ogi&th=1&psc=1",
+    "images": {
+     "primary": {
+      "large": {
+       "url": "https://m.media-amazon.com/images/I/placeholder.jpg",
+       "width": 500,
+       "height": 500
+      }
+     }
+    },
+    "itemInfo": {
+     "title": {
+      "displayValue": "[テスト商品] レディース パンプス サンプル1"
+     },
+     "byLineInfo": {
+      "brand": {
+       "displayValue": "SAMPLE"
+      }
+     }
+    },
+    "offersV2": {
+     "listings": [
+      {
+       "availability": {
+        "type": "IN_STOCK"
+       },
+       "condition": {
+        "value": "New"
+       },
+       "isBuyBoxWinner": true,
+       "price": {
+        "money": {
+         "amount": 27860,
+         "currency": "JPY",
+         "displayAmount": "￥27,860"
+        },
+        "savingBasis": {
+         "money": {
+          "amount": 39800,
+          "currency": "JPY",
+          "displayAmount": "￥39,800"
+         },
+         "savingBasisType": "WAS_PRICE"
+        },
+        "savings": {
+         "money": {
+          "amount": 11940,
+          "currency": "JPY"
+         },
+         "percentage": 30
+        }
+       },
+       "dealDetails": {
+        "accessType": "ALL",
+        "badge": "タイムセール",
+        "endTime": "2026-10-11T14:59Z"
+       }
+      }
+     ]
+    }
+   },
+   {
+    "asin": "B0TEST0006",
+    "detailPageURL": "https://www.amazon.co.jp/dp/B0TEST0006?tag=yourtag-22&linkCode=ogi&th=1&psc=1",
+    "images": {
+     "primary": {
+      "large": {
+       "url": "https://m.media-amazon.com/images/I/placeholder.jpg",
+       "width": 500,
+       "height": 500
+      }
+     }
+    },
+    "itemInfo": {
+     "title": {
+      "displayValue": "[テスト商品] レディース パンプス サンプル2"
+     },
+     "byLineInfo": {
+      "brand": {
+       "displayValue": "SAMPLE"
+      }
+     }
+    },
+    "offersV2": {
+     "listings": [
+      {
+       "availability": {
+        "type": "IN_STOCK"
+       },
+       "condition": {
+        "value": "New"
+       },
+       "isBuyBoxWinner": true,
+       "price": {
+        "money": {
+         "amount": 6282,
+         "currency": "JPY",
+         "displayAmount": "￥6,282"
+        },
+        "savingBasis": {
+         "money": {
+          "amount": 6980,
+          "currency": "JPY",
+          "displayAmount": "￥6,980"
+         },
+         "savingBasisType": "WAS_PRICE"
+        },
+        "savings": {
+         "money": {
+          "amount": 698,
+          "currency": "JPY"
+         },
+         "percentage": 10
+        }
+       }
+      }
+     ]
+    }
+   },
+   {
+    "asin": "B0TEST0007",
+    "detailPageURL": "https://www.amazon.co.jp/dp/B0TEST0007?tag=yourtag-22&linkCode=ogi&th=1&psc=1",
+    "images": {
+     "primary": {
+      "large": {
+       "url": "https://m.media-amazon.com/images/I/placeholder.jpg",
+       "width": 500,
+       "height": 500
+      }
+     }
+    },
+    "itemInfo": {
+     "title": {
+      "displayValue": "[テスト商品] レディース パンプス サンプル3"
+     },
+     "byLineInfo": {
+      "brand": {
+       "displayValue": "SAMPLE"
+      }
+     }
+    },
+    "offersV2": {
+     "listings": [
+      {
+       "availability": {
+        "type": "IN_STOCK"
+       },
+       "condition": {
+        "value": "New"
+       },
+       "isBuyBoxWinner": true,
+       "price": {
+        "money": {
+         "amount": 11520,
+         "currency": "JPY",
+         "displayAmount": "￥11,520"
+        },
+        "savingBasis": {
+         "money": {
+          "amount": 12800,
+          "currency": "JPY",
+          "displayAmount": "￥12,800"
+         },
+         "savingBasisType": "WAS_PRICE"
+        },
+        "savings": {
+         "money": {
+          "amount": 1280,
+          "currency": "JPY"
+         },
+         "percentage": 10
+        }
+       }
+      }
+     ]
+    }
+   },
+   {
+    "asin": "B0TEST0008",
+    "detailPageURL": "https://www.amazon.co.jp/dp/B0TEST0008?tag=yourtag-22&linkCode=ogi&th=1&psc=1",
+    "images": {
+     "primary": {
+      "large": {
+       "url": "https://m.media-amazon.com/images/I/placeholder.jpg",
+       "width": 500,
+       "height": 500
+      }
+     }
+    },
+    "itemInfo": {
+     "title": {
+      "displayValue": "[テスト商品] レディース パンプス サンプル4"
+     },
+     "byLineInfo": {
+      "brand": {
+       "displayValue": "SAMPLE"
+      }
+     }
+    },
+    "offersV2": {
+     "listings": [
+      {
+       "availability": {
+        "type": "OUT_OF_STOCK"
+       },
+       "condition": {
+        "value": "New"
+       },
+       "isBuyBoxWinner": true,
+       "price": {
+        "money": {
+         "amount": 8960,
+         "currency": "JPY",
+         "displayAmount": "￥8,960"
+        },
+        "savingBasis": {
+         "money": {
+          "amount": 12800,
+          "currency": "JPY",
+          "displayAmount": "￥12,800"
+         },
+         "savingBasisType": "WAS_PRICE"
+        },
+        "savings": {
+         "money": {
+          "amount": 3840,
+          "currency": "JPY"
+         },
+         "percentage": 30
+        }
+       }
+      }
+     ]
+    }
+   },
+   {
+    "asin": "B0TEST0009",
+    "detailPageURL": "https://www.amazon.co.jp/dp/B0TEST0009?tag=yourtag-22&linkCode=ogi&th=1&psc=1",
+    "images": {
+     "primary": {
+      "large": {
+       "url": "https://m.media-amazon.com/images/I/placeholder.jpg",
+       "width": 500,
+       "height": 500
+      }
+     }
+    },
+    "itemInfo": {
+     "title": {
+      "displayValue": "[テスト商品] レディース ショルダーバッグ サンプル1"
+     },
+     "byLineInfo": {
+      "brand": {
+       "displayValue": "SAMPLE"
+      }
+     }
+    },
+    "offersV2": {
+     "listings": [
+      {
+       "availability": {
+        "type": "IN_STOCK"
+       },
+       "condition": {
+        "value": "New"
+       },
+       "isBuyBoxWinner": true,
+       "price": {
+        "money": {
+         "amount": 14220,
+         "currency": "JPY",
+         "displayAmount": "￥14,220"
+        },
+        "savingBasis": {
+         "money": {
+          "amount": 15800,
+          "currency": "JPY",
+          "displayAmount": "￥15,800"
+         },
+         "savingBasisType": "WAS_PRICE"
+        },
+        "savings": {
+         "money": {
+          "amount": 1580,
+          "currency": "JPY"
+         },
+         "percentage": 10
+        }
+       },
+       "dealDetails": {
+        "accessType": "ALL",
+        "badge": "タイムセール",
+        "endTime": "2026-10-11T14:59Z"
+       }
+      }
+     ]
+    }
+   },
+   {
+    "asin": "B0TEST0010",
+    "detailPageURL": "https://www.amazon.co.jp/dp/B0TEST0010?tag=yourtag-22&linkCode=ogi&th=1&psc=1",
+    "images": {
+     "primary": {
+      "large": {
+       "url": "https://m.media-amazon.com/images/I/placeholder.jpg",
+       "width": 500,
+       "height": 500
+      }
+     }
+    },
+    "itemInfo": {
+     "title": {
+      "displayValue": "[テスト商品] レディース ショルダーバッグ サンプル2"
+     },
+     "byLineInfo": {
+      "brand": {
+       "displayValue": "SAMPLE"
+      }
+     }
+    },
+    "offersV2": {
+     "listings": [
+      {
+       "availability": {
+        "type": "IN_STOCK"
+       },
+       "condition": {
+        "value": "New"
+       },
+       "isBuyBoxWinner": true,
+       "price": {
+        "money": {
+         "amount": 27860,
+         "currency": "JPY",
+         "displayAmount": "￥27,860"
+        },
+        "savingBasis": {
+         "money": {
+          "amount": 39800,
+          "currency": "JPY",
+          "displayAmount": "￥39,800"
+         },
+         "savingBasisType": "WAS_PRICE"
+        },
+        "savings": {
+         "money": {
+          "amount": 11940,
+          "currency": "JPY"
+         },
+         "percentage": 30
+        }
+       }
+      }
+     ]
+    }
+   },
+   {
+    "asin": "B0TEST0011",
+    "detailPageURL": "https://www.amazon.co.jp/dp/B0TEST0011?tag=yourtag-22&linkCode=ogi&th=1&psc=1",
+    "images": {
+     "primary": {
+      "large": {
+       "url": "https://m.media-amazon.com/images/I/placeholder.jpg",
+       "width": 500,
+       "height": 500
+      }
+     }
+    },
+    "itemInfo": {
+     "title": {
+      "displayValue": "[テスト商品] レディース ショルダーバッグ サンプル3"
+     },
+     "byLineInfo": {
+      "brand": {
+       "displayValue": "SAMPLE"
+      }
+     }
+    },
+    "offersV2": {
+     "listings": [
+      {
+       "availability": {
+        "type": "IN_STOCK"
+       },
+       "condition": {
+        "value": "New"
+       },
+       "isBuyBoxWinner": true,
+       "price": {
+        "money": {
+         "amount": 4939,
+         "currency": "JPY",
+         "displayAmount": "￥4,939"
+        },
+        "savingBasis": {
+         "money": {
+          "amount": 8980,
+          "currency": "JPY",
+          "displayAmount": "￥8,980"
+         },
+         "savingBasisType": "WAS_PRICE"
+        },
+        "savings": {
+         "money": {
+          "amount": 4041,
+          "currency": "JPY"
+         },
+         "percentage": 45
+        }
+       }
+      }
+     ]
+    }
+   },
+   {
+    "asin": "B0TEST0012",
+    "detailPageURL": "https://www.amazon.co.jp/dp/B0TEST0012?tag=yourtag-22&linkCode=ogi&th=1&psc=1",
+    "images": {
+     "primary": {
+      "large": {
+       "url": "https://m.media-amazon.com/images/I/placeholder.jpg",
+       "width": 500,
+       "height": 500
+      }
+     }
+    },
+    "itemInfo": {
+     "title": {
+      "displayValue": "[テスト商品] レディース ショルダーバッグ サンプル4"
+     },
+     "byLineInfo": {
+      "brand": {
+       "displayValue": "SAMPLE"
+      }
+     }
+    },
+    "offersV2": {
+     "listings": [
+      {
+       "availability": {
+        "type": "OUT_OF_STOCK"
+       },
+       "condition": {
+        "value": "New"
+       },
+       "isBuyBoxWinner": true,
+       "price": {
+        "money": {
+         "amount": 4537,
+         "currency": "JPY",
+         "displayAmount": "￥4,537"
+        },
+        "savingBasis": {
+         "money": {
+          "amount": 6980,
+          "currency": "JPY",
+          "displayAmount": "￥6,980"
+         },
+         "savingBasisType": "WAS_PRICE"
+        },
+        "savings": {
+         "money": {
+          "amount": 2443,
+          "currency": "JPY"
+         },
+         "percentage": 35
+        }
+       }
+      }
+     ]
+    }
+   },
+   {
+    "asin": "B0TEST0013",
+    "detailPageURL": "https://www.amazon.co.jp/dp/B0TEST0013?tag=yourtag-22&linkCode=ogi&th=1&psc=1",
+    "images": {
+     "primary": {
+      "large": {
+       "url": "https://m.media-amazon.com/images/I/placeholder.jpg",
+       "width": 500,
+       "height": 500
+      }
+     }
+    },
+    "itemInfo": {
+     "title": {
+      "displayValue": "[テスト商品] レディース トートバッグ サンプル1"
+     },
+     "byLineInfo": {
+      "brand": {
+       "displayValue": "SAMPLE"
+      }
+     }
+    },
+    "offersV2": {
+     "listings": [
+      {
+       "availability": {
+        "type": "IN_STOCK"
+       },
+       "condition": {
+        "value": "New"
+       },
+       "isBuyBoxWinner": true,
+       "price": {
+        "money": {
+         "amount": 3884,
+         "currency": "JPY",
+         "displayAmount": "￥3,884"
+        },
+        "savingBasis": {
+         "money": {
+          "amount": 4980,
+          "currency": "JPY",
+          "displayAmount": "￥4,980"
+         },
+         "savingBasisType": "WAS_PRICE"
+        },
+        "savings": {
+         "money": {
+          "amount": 1096,
+          "currency": "JPY"
+         },
+         "percentage": 22
+        }
+       },
+       "dealDetails": {
+        "accessType": "ALL",
+        "badge": "タイムセール",
+        "endTime": "2026-10-11T14:59Z"
+       }
+      }
+     ]
+    }
+   },
+   {
+    "asin": "B0TEST0014",
+    "detailPageURL": "https://www.amazon.co.jp/dp/B0TEST0014?tag=yourtag-22&linkCode=ogi&th=1&psc=1",
+    "images": {
+     "primary": {
+      "large": {
+       "url": "https://m.media-amazon.com/images/I/placeholder.jpg",
+       "width": 500,
+       "height": 500
+      }
+     }
+    },
+    "itemInfo": {
+     "title": {
+      "displayValue": "[テスト商品] レディース トートバッグ サンプル2"
+     },
+     "byLineInfo": {
+      "brand": {
+       "displayValue": "SAMPLE"
+      }
+     }
+    },
+    "offersV2": {
+     "listings": [
+      {
+       "availability": {
+        "type": "IN_STOCK"
+       },
+       "condition": {
+        "value": "New"
+       },
+       "isBuyBoxWinner": true,
+       "price": {
+        "money": {
+         "amount": 4482,
+         "currency": "JPY",
+         "displayAmount": "￥4,482"
+        },
+        "savingBasis": {
+         "money": {
+          "amount": 4980,
+          "currency": "JPY",
+          "displayAmount": "￥4,980"
+         },
+         "savingBasisType": "WAS_PRICE"
+        },
+        "savings": {
+         "money": {
+          "amount": 498,
+          "currency": "JPY"
+         },
+         "percentage": 10
+        }
+       }
+      }
+     ]
+    }
+   },
+   {
+    "asin": "B0TEST0015",
+    "detailPageURL": "https://www.amazon.co.jp/dp/B0TEST0015?tag=yourtag-22&linkCode=ogi&th=1&psc=1",
+    "images": {
+     "primary": {
+      "large": {
+       "url": "https://m.media-amazon.com/images/I/placeholder.jpg",
+       "width": 500,
+       "height": 500
+      }
+     }
+    },
+    "itemInfo": {
+     "title": {
+      "displayValue": "[テスト商品] レディース トートバッグ サンプル3"
+     },
+     "byLineInfo": {
+      "brand": {
+       "displayValue": "SAMPLE"
+      }
+     }
+    },
+    "offersV2": {
+     "listings": [
+      {
+       "availability": {
+        "type": "IN_STOCK"
+       },
+       "condition": {
+        "value": "New"
+       },
+       "isBuyBoxWinner": true,
+       "price": {
+        "money": {
+         "amount": 2739,
+         "currency": "JPY",
+         "displayAmount": "￥2,739"
+        },
+        "savingBasis": {
+         "money": {
+          "amount": 4980,
+          "currency": "JPY",
+          "displayAmount": "￥4,980"
+         },
+         "savingBasisType": "WAS_PRICE"
+        },
+        "savings": {
+         "money": {
+          "amount": 2241,
+          "currency": "JPY"
+         },
+         "percentage": 45
+        }
+       }
+      }
+     ]
+    }
+   },
+   {
+    "asin": "B0TEST0016",
+    "detailPageURL": "https://www.amazon.co.jp/dp/B0TEST0016?tag=yourtag-22&linkCode=ogi&th=1&psc=1",
+    "images": {
+     "primary": {
+      "large": {
+       "url": "https://m.media-amazon.com/images/I/placeholder.jpg",
+       "width": 500,
+       "height": 500
+      }
+     }
+    },
+    "itemInfo": {
+     "title": {
+      "displayValue": "[テスト商品] レディース トートバッグ サンプル4"
+     },
+     "byLineInfo": {
+      "brand": {
+       "displayValue": "SAMPLE"
+      }
+     }
+    },
+    "offersV2": {
+     "listings": [
+      {
+       "availability": {
+        "type": "OUT_OF_STOCK"
+       },
+       "condition": {
+        "value": "New"
+       },
+       "isBuyBoxWinner": true,
+       "price": {
+        "money": {
+         "amount": 14220,
+         "currency": "JPY",
+         "displayAmount": "￥14,220"
+        },
+        "savingBasis": {
+         "money": {
+          "amount": 15800,
+          "currency": "JPY",
+          "displayAmount": "￥15,800"
+         },
+         "savingBasisType": "WAS_PRICE"
+        },
+        "savings": {
+         "money": {
+          "amount": 1580,
+          "currency": "JPY"
+         },
+         "percentage": 10
+        }
+       }
+      }
+     ]
+    }
+   },
+   {
+    "asin": "B0TEST0017",
+    "detailPageURL": "https://www.amazon.co.jp/dp/B0TEST0017?tag=yourtag-22&linkCode=ogi&th=1&psc=1",
+    "images": {
+     "primary": {
+      "large": {
+       "url": "https://m.media-amazon.com/images/I/placeholder.jpg",
+       "width": 500,
+       "height": 500
+      }
+     }
+    },
+    "itemInfo": {
+     "title": {
+      "displayValue": "[テスト商品] レディース 財布 サンプル1"
+     },
+     "byLineInfo": {
+      "brand": {
+       "displayValue": "SAMPLE"
+      }
+     }
+    },
+    "offersV2": {
+     "listings": [
+      {
+       "availability": {
+        "type": "IN_STOCK"
+       },
+       "condition": {
+        "value": "New"
+       },
+       "isBuyBoxWinner": true,
+       "price": {
+        "money": {
+         "amount": 7040,
+         "currency": "JPY",
+         "displayAmount": "￥7,040"
+        },
+        "savingBasis": {
+         "money": {
+          "amount": 12800,
+          "currency": "JPY",
+          "displayAmount": "￥12,800"
+         },
+         "savingBasisType": "WAS_PRICE"
+        },
+        "savings": {
+         "money": {
+          "amount": 5760,
+          "currency": "JPY"
+         },
+         "percentage": 45
+        }
+       },
+       "dealDetails": {
+        "accessType": "ALL",
+        "badge": "タイムセール",
+        "endTime": "2026-10-11T14:59Z"
+       }
+      }
+     ]
+    }
+   },
+   {
+    "asin": "B0TEST0018",
+    "detailPageURL": "https://www.amazon.co.jp/dp/B0TEST0018?tag=yourtag-22&linkCode=ogi&th=1&psc=1",
+    "images": {
+     "primary": {
+      "large": {
+       "url": "https://m.media-amazon.com/images/I/placeholder.jpg",
+       "width": 500,
+       "height": 500
+      }
+     }
+    },
+    "itemInfo": {
+     "title": {
+      "displayValue": "[テスト商品] レディース 財布 サンプル2"
+     },
+     "byLineInfo": {
+      "brand": {
+       "displayValue": "SAMPLE"
+      }
+     }
+    },
+    "offersV2": {
+     "listings": [
+      {
+       "availability": {
+        "type": "IN_STOCK"
+       },
+       "condition": {
+        "value": "New"
+       },
+       "isBuyBoxWinner": true,
+       "price": {
+        "money": {
+         "amount": 4886,
+         "currency": "JPY",
+         "displayAmount": "￥4,886"
+        },
+        "savingBasis": {
+         "money": {
+          "amount": 6980,
+          "currency": "JPY",
+          "displayAmount": "￥6,980"
+         },
+         "savingBasisType": "WAS_PRICE"
+        },
+        "savings": {
+         "money": {
+          "amount": 2094,
+          "currency": "JPY"
+         },
+         "percentage": 30
+        }
+       }
+      }
+     ]
+    }
+   },
+   {
+    "asin": "B0TEST0019",
+    "detailPageURL": "https://www.amazon.co.jp/dp/B0TEST0019?tag=yourtag-22&linkCode=ogi&th=1&psc=1",
+    "images": {
+     "primary": {
+      "large": {
+       "url": "https://m.media-amazon.com/images/I/placeholder.jpg",
+       "width": 500,
+       "height": 500
+      }
+     }
+    },
+    "itemInfo": {
+     "title": {
+      "displayValue": "[テスト商品] レディース 財布 サンプル3"
+     },
+     "byLineInfo": {
+      "brand": {
+       "displayValue": "SAMPLE"
+      }
+     }
+    },
+    "offersV2": {
+     "listings": [
+      {
+       "availability": {
+        "type": "IN_STOCK"
+       },
+       "condition": {
+        "value": "New"
+       },
+       "isBuyBoxWinner": true,
+       "price": {
+        "money": {
+         "amount": 35820,
+         "currency": "JPY",
+         "displayAmount": "￥35,820"
+        },
+        "savingBasis": {
+         "money": {
+          "amount": 39800,
+          "currency": "JPY",
+          "displayAmount": "￥39,800"
+         },
+         "savingBasisType": "WAS_PRICE"
+        },
+        "savings": {
+         "money": {
+          "amount": 3980,
+          "currency": "JPY"
+         },
+         "percentage": 10
+        }
+       }
+      }
+     ]
+    }
+   },
+   {
+    "asin": "B0TEST0020",
+    "detailPageURL": "https://www.amazon.co.jp/dp/B0TEST0020?tag=yourtag-22&linkCode=ogi&th=1&psc=1",
+    "images": {
+     "primary": {
+      "large": {
+       "url": "https://m.media-amazon.com/images/I/placeholder.jpg",
+       "width": 500,
+       "height": 500
+      }
+     }
+    },
+    "itemInfo": {
+     "title": {
+      "displayValue": "[テスト商品] レディース 財布 サンプル4"
+     },
+     "byLineInfo": {
+      "brand": {
+       "displayValue": "SAMPLE"
+      }
+     }
+    },
+    "offersV2": {
+     "listings": [
+      {
+       "availability": {
+        "type": "OUT_OF_STOCK"
+       },
+       "condition": {
+        "value": "New"
+       },
+       "isBuyBoxWinner": true,
+       "price": {
+        "money": {
+         "amount": 13430,
+         "currency": "JPY",
+         "displayAmount": "￥13,430"
+        },
+        "savingBasis": {
+         "money": {
+          "amount": 15800,
+          "currency": "JPY",
+          "displayAmount": "￥15,800"
+         },
+         "savingBasisType": "WAS_PRICE"
+        },
+        "savings": {
+         "money": {
+          "amount": 2370,
+          "currency": "JPY"
+         },
+         "percentage": 15
+        }
+       }
+      }
+     ]
+    }
+   },
+   {
+    "asin": "B0TEST0021",
+    "detailPageURL": "https://www.amazon.co.jp/dp/B0TEST0021?tag=yourtag-22&linkCode=ogi&th=1&psc=1",
+    "images": {
+     "primary": {
+      "large": {
+       "url": "https://m.media-amazon.com/images/I/placeholder.jpg",
+       "width": 500,
+       "height": 500
+      }
+     }
+    },
+    "itemInfo": {
+     "title": {
+      "displayValue": "[テスト商品] レディース ブーツ サンプル1"
+     },
+     "byLineInfo": {
+      "brand": {
+       "displayValue": "SAMPLE"
+      }
+     }
+    },
+    "offersV2": {
+     "listings": [
+      {
+       "availability": {
+        "type": "IN_STOCK"
+       },
+       "condition": {
+        "value": "New"
+       },
+       "isBuyBoxWinner": true,
+       "price": {
+        "money": {
+         "amount": 8960,
+         "currency": "JPY",
+         "displayAmount": "￥8,960"
+        },
+        "savingBasis": {
+         "money": {
+          "amount": 12800,
+          "currency": "JPY",
+          "displayAmount": "￥12,800"
+         },
+         "savingBasisType": "WAS_PRICE"
+        },
+        "savings": {
+         "money": {
+          "amount": 3840,
+          "currency": "JPY"
+         },
+         "percentage": 30
+        }
+       },
+       "dealDetails": {
+        "accessType": "ALL",
+        "badge": "タイムセール",
+        "endTime": "2026-10-11T14:59Z"
+       }
+      }
+     ]
+    }
+   },
+   {
+    "asin": "B0TEST0022",
+    "detailPageURL": "https://www.amazon.co.jp/dp/B0TEST0022?tag=yourtag-22&linkCode=ogi&th=1&psc=1",
+    "images": {
+     "primary": {
+      "large": {
+       "url": "https://m.media-amazon.com/images/I/placeholder.jpg",
+       "width": 500,
+       "height": 500
+      }
+     }
+    },
+    "itemInfo": {
+     "title": {
+      "displayValue": "[テスト商品] レディース ブーツ サンプル2"
+     },
+     "byLineInfo": {
+      "brand": {
+       "displayValue": "SAMPLE"
+      }
+     }
+    },
+    "offersV2": {
+     "listings": [
+      {
+       "availability": {
+        "type": "IN_STOCK"
+       },
+       "condition": {
+        "value": "New"
+       },
+       "isBuyBoxWinner": true,
+       "price": {
+        "money": {
+         "amount": 13430,
+         "currency": "JPY",
+         "displayAmount": "￥13,430"
+        },
+        "savingBasis": {
+         "money": {
+          "amount": 15800,
+          "currency": "JPY",
+          "displayAmount": "￥15,800"
+         },
+         "savingBasisType": "WAS_PRICE"
+        },
+        "savings": {
+         "money": {
+          "amount": 2370,
+          "currency": "JPY"
+         },
+         "percentage": 15
+        }
+       }
+      }
+     ]
+    }
+   },
+   {
+    "asin": "B0TEST0023",
+    "detailPageURL": "https://www.amazon.co.jp/dp/B0TEST0023?tag=yourtag-22&linkCode=ogi&th=1&psc=1",
+    "images": {
+     "primary": {
+      "large": {
+       "url": "https://m.media-amazon.com/images/I/placeholder.jpg",
+       "width": 500,
+       "height": 500
+      }
+     }
+    },
+    "itemInfo": {
+     "title": {
+      "displayValue": "[テスト商品] レディース ブーツ サンプル3"
+     },
+     "byLineInfo": {
+      "brand": {
+       "displayValue": "SAMPLE"
+      }
+     }
+    },
+    "offersV2": {
+     "listings": [
+      {
+       "availability": {
+        "type": "IN_STOCK"
+       },
+       "condition": {
+        "value": "New"
+       },
+       "isBuyBoxWinner": true,
+       "price": {
+        "money": {
+         "amount": 7633,
+         "currency": "JPY",
+         "displayAmount": "￥7,633"
+        },
+        "savingBasis": {
+         "money": {
+          "amount": 8980,
+          "currency": "JPY",
+          "displayAmount": "￥8,980"
+         },
+         "savingBasisType": "WAS_PRICE"
+        },
+        "savings": {
+         "money": {
+          "amount": 1347,
+          "currency": "JPY"
+         },
+         "percentage": 15
+        }
+       }
+      }
+     ]
+    }
+   },
+   {
+    "asin": "B0TEST0024",
+    "detailPageURL": "https://www.amazon.co.jp/dp/B0TEST0024?tag=yourtag-22&linkCode=ogi&th=1&psc=1",
+    "images": {
+     "primary": {
+      "large": {
+       "url": "https://m.media-amazon.com/images/I/placeholder.jpg",
+       "width": 500,
+       "height": 500
+      }
+     }
+    },
+    "itemInfo": {
+     "title": {
+      "displayValue": "[テスト商品] レディース ブーツ サンプル4"
+     },
+     "byLineInfo": {
+      "brand": {
+       "displayValue": "SAMPLE"
+      }
+     }
+    },
+    "offersV2": {
+     "listings": [
+      {
+       "availability": {
+        "type": "OUT_OF_STOCK"
+       },
+       "condition": {
+        "value": "New"
+       },
+       "isBuyBoxWinner": true,
+       "price": {
+        "money": {
+         "amount": 33830,
+         "currency": "JPY",
+         "displayAmount": "￥33,830"
+        },
+        "savingBasis": {
+         "money": {
+          "amount": 39800,
+          "currency": "JPY",
+          "displayAmount": "￥39,800"
+         },
+         "savingBasisType": "WAS_PRICE"
+        },
+        "savings": {
+         "money": {
+          "amount": 5970,
+          "currency": "JPY"
+         },
+         "percentage": 15
+        }
+       }
+      }
+     ]
+    }
+   }
+  ],
+  "totalResultCount": 24
+ }
+}

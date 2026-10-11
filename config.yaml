@@ -1,0 +1,49 @@
+# ===== AIアフィリエイト運営組織：設定ファイル =====
+# ここを書き換えるだけで、ジャンル・閾値・投稿頻度・承認方法を変えられる。
+
+phase: 0            # 0=手動立ち上げ期（API未使用） / 1=半自動（承認あり） / 2=全自動
+auto_approve: false # true にすると承認を飛ばして投稿（フェーズ2で解禁）
+
+amazon:
+  partner_tag: "trendinfo0c-22"        # アソシエイトID（トラッキングID）
+  marketplace: "www.amazon.co.jp"
+  token_endpoint: "https://api.amazon.co.jp/auth/o2/token"   # FE地域（日本）
+  api_base: "https://creatorsapi.amazon"
+  credential_version: "3.3"
+
+# リサーチ部：検索条件（20〜40代女性向けファッション）
+research:
+  search_index: "Fashion"
+  keywords:
+    - "レディース スニーカー"
+    - "レディース パンプス"
+    - "レディース ショルダーバッグ"
+    - "レディース トートバッグ"
+    - "レディース 財布"
+    - "レディース ブーツ"
+  min_saving_percent: 20      # Amazonが算出した割引率がこれ以上のものだけ
+  min_price_yen: 3000         # 単価が低すぎる商品は除外（報酬が出ない）
+  max_price_yen: 30000
+  min_reviews_rating: 4       # 星4以上
+  items_per_keyword: 10
+
+# 編集部：掲載ルール
+editorial:
+  max_items_on_site: 30
+  repost_cooldown_hours: 72   # 同じ商品を再投稿しない期間
+
+# 広報部：SNS投稿ルール
+publishing:
+  site_url: "https://requiem4869.github.io/sale-hub/"   # ハブサイトのURL（GitHub Pages）
+  x:
+    enabled: true
+    max_posts_per_day: 4
+    # url: 投稿にハブURLを入れる（1件$0.20） / profile: URLを入れずプロフィール誘導（1件$0.015）
+    link_mode: "profile"
+  instagram:
+    enabled: true
+    stories_per_day: 1        # 1日1枚のお知らせ画像（商品写真は使わない）
+
+brand:
+  account_name: "トレンド発信局｜レディース靴・バッグのセール"
+  hashtags: ["#Amazonセール", "#レディースファッション", "#プチプラ"]

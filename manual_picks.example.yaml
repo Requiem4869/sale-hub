@@ -1,0 +1,12 @@
+# フェーズ0（API利用前）用：手動で選んだ商品をハブサイトに載せる。
+# 使い方: このファイルを manual_picks.yaml にコピーして編集する。
+# link は Amazonの商品ページ上部の「SiteStripe」→「テキスト」で作ったリンクを貼る。
+# 価格・画像は載せない（自分の言葉でコメントを書く）。
+- name: "通勤用のきれいめスニーカー"
+  category: "スニーカー"
+  comment: "ヒールが疲れる日用に。白は合わせやすく、汚れが目立ちにくい素材です。"
+  link: "https://amzn.to/xxxxxxx"
+- name: "A4が入る軽いトートバッグ"
+  category: "トートバッグ"
+  comment: "PCも入るサイズ感。肩掛けでも痛くなりにくい太めの持ち手。"
+  link: "https://amzn.to/yyyyyyy"

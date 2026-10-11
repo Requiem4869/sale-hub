@@ -202,7 +202,7 @@
 
 # ---- PR（商品紹介）投稿：date の日の20時台に投稿。商品写真・価格は使わない ----
 - id: pr-autumn-bags
-  approved: false
+  approved: true
   pr: true
   date: "2026-10-15"
   caption: |
@@ -229,7 +229,7 @@
     - {type: closing, title: "商品はプロフィールの\nリンクから", body: "まとめページに掲載しています。価格や在庫は変わることがあるので、購入前にAmazonでご確認ください。", button: "プロフィールのリンクをタップ"}
 
 - id: pr-autumn-shoes
-  approved: false
+  approved: true
   pr: true
   date: "2026-10-17"
   caption: |

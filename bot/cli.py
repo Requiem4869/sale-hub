@@ -86,6 +86,8 @@ def cmd_publish(args, cfg) -> None:
             else:
                 cap = feed.caption_of(post)
                 errors = check_info_text(cap)
+                if post.get("pr") and "PR" not in cap:
+                    errors.append("広告投稿なのにPR表記がない")
                 if errors:
                     print(f"情報投稿 差し戻し {post['id']}: {', '.join(errors)}")
                 else:

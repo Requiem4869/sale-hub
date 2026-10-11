@@ -80,7 +80,8 @@ def _card(d: Deal) -> str:
 
 def _manual_card(p: dict) -> str:
     e = html.escape
-    return f"""<article class="card"><div class="title"><strong>{e(p['name'])}</strong><br>{e(p.get('comment', ''))}</div>
+    cat = f'<div class="badge">{e(p["category"])}</div>' if p.get("category") else ""
+    return f"""<article class="card">{cat}<div class="title"><strong>{e(p['name'])}</strong><br>{e(p.get('comment', ''))}</div>
 <a class="btn" href="{e(p['link'])}" rel="sponsored noopener" target="_blank">Amazonで見る</a></article>"""
 
 

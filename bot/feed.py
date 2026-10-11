@@ -49,15 +49,22 @@ class FeedLog:
 
 
 def next_due(posts: list[dict], log: FeedLog, cfg: dict, now: datetime) -> dict | None:
-    """今が投稿枠（指定曜日の指定時刻以降）で、今日まだ投稿していなければ、次の承認済み投稿を返す。"""
+    """投稿すべきものを1件返す（1日1件まで）。
+    - date 指定のある投稿：その日の指定時刻以降に投稿（曜日に関係なく優先）
+    - date 指定のない投稿：指定曜日の指定時刻以降に、上から順に投稿
+    """
     ig = cfg["publishing"]["instagram"]
     local = now.astimezone(JST)
-    if local.weekday() not in {DAYS[d] for d in ig.get("feed_days", [])}:
-        return None
     if local.hour < ig.get("feed_hour_jst", 20) or log.posted_today(now):
         return None
+    today = local.date().isoformat()
     for p in posts:
-        if p.get("approved") and p["id"] not in log.data:
+        if p.get("approved") and p["id"] not in log.data and str(p.get("date", "")) == today:
+            return p
+    if local.weekday() not in {DAYS[d] for d in ig.get("feed_days", [])}:
+        return None
+    for p in posts:
+        if p.get("approved") and p["id"] not in log.data and not p.get("date"):
             return p
     return None
 

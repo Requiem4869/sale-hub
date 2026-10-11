@@ -45,7 +45,7 @@ def _wrap(d, text, f, maxw):
     for ch in text:
         if ch == "\n":
             lines.append(cur); cur = ""; continue
-        if d.textlength(cur + ch, font=f) > maxw:
+        if d.textlength(cur + ch, font=f) > maxw and ch not in "、。，．）」』！？ー":  # 行頭禁則
             lines.append(cur); cur = ch
         else:
             cur += ch
@@ -61,10 +61,15 @@ def _para(d, x, y, text, f, fill, maxw, lh):
     return y
 
 
-def _base(brand: str, handle: str):
+def _base(brand: str, handle: str, pr: bool = False):
     im = Image.new("RGB", (W, H), BG)
     d = ImageDraw.Draw(im)
-    d.text((72, 64), brand, font=font("bold", 34), fill=PINK)
+    x = 72
+    if pr:  # 広告投稿は全スライドにPR表記（ステマ規制）
+        d.rounded_rectangle([72, 60, 152, 108], radius=12, fill=PINK)
+        d.text((88, 64), "PR", font=font("black", 34), fill=BG)
+        x = 172
+    d.text((x, 64), brand, font=font("bold", 34), fill=PINK)
     d.text((W - 72 - d.textlength(handle, font=font("regular", 28)), 70), handle, font=font("regular", 28), fill=MUTED)
     d.line([72, 124, W - 72, 124], fill=RULE, width=2)
     return im, d
@@ -77,8 +82,8 @@ def _footer(d, left: str, i: int, n: int):
         d.text((W - 72 - d.textlength(s, font=font("bold", 30)), H - 110), s, font=font("bold", 30), fill=PINK)
 
 
-def render_slide(s: dict, i: int, n: int, brand: str, handle: str) -> Image.Image:
-    im, d = _base(brand, handle)
+def render_slide(s: dict, i: int, n: int, brand: str, handle: str, pr: bool = False) -> Image.Image:
+    im, d = _base(brand, handle, pr)
     kind = s["type"]
     maxw = W - 144
     if kind == "cover":
@@ -125,7 +130,7 @@ def render_slide(s: dict, i: int, n: int, brand: str, handle: str) -> Image.Imag
         y = _para(d, 72, 380, s["title"], font("black", 84), INK, maxw, 116)
         y = _para(d, 72, y + 30, s.get("body", ""), font("regular", 40), MUTED, maxw, 64)
         d.rounded_rectangle([72, y + 60, W - 72, y + 190], radius=65, outline=PINK, width=4)
-        label = "フォローでセール情報を受け取る"
+        label = s.get("button", "フォローでセール情報を受け取る")
         f = font("bold", 42)
         d.text(((W - d.textlength(label, font=f)) / 2, y + 100), label, font=f, fill=PINK)
         _footer(d, handle, i, n)
@@ -140,6 +145,6 @@ def render_post(post: dict, out_dir: Path, brand: str, handle: str) -> list[Path
     paths = []
     for i, s in enumerate(slides, 1):
         p = out_dir / f"{i}.jpg"
-        render_slide(s, i, len(slides), brand, handle).save(p, "JPEG", quality=90, optimize=True)
+        render_slide(s, i, len(slides), brand, handle, bool(post.get("pr"))).save(p, "JPEG", quality=90, optimize=True)
         paths.append(p)
     return paths

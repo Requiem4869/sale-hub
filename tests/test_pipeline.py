@@ -84,6 +84,8 @@ def test_feed_content_and_schedule(tmp_path):
     assert len({p["id"] for p in posts_}) == len(posts_), "idが重複していない"
     for p in posts_:
         assert check_info_text(feed.caption_of(p)) == [], p["id"]
+        if p.get("pr"):
+            assert "PR" in feed.caption_of(p)
         assert 1 <= len(p["slides"]) <= 10
     counts = feed.render_all(posts_[:2], tmp_path, cfg)
     assert all((tmp_path / "feed" / pid / "1.jpg").exists() for pid in counts)
@@ -94,7 +96,9 @@ def test_feed_content_and_schedule(tmp_path):
     wed_10 = datetime(2026, 10, 14, 1, 0, tzinfo=timezone.utc)    # 水曜 10:00 JST
     thu_21 = datetime(2026, 10, 15, 12, 0, tzinfo=timezone.utc)   # 木曜
     assert feed.next_due(posts_, log, cfg, wed_10) is None
-    assert feed.next_due(posts_, log, cfg, thu_21) is None
+    assert feed.next_due(posts_, log, cfg, thu_21)["id"] == "pr-commute-totes", "日付指定の投稿は曜日に関係なく出る"
+    thu_other = datetime(2026, 10, 22, 12, 0, tzinfo=timezone.utc)   # 日付指定のない木曜
+    assert feed.next_due(posts_, log, cfg, thu_other) is None
     first = feed.next_due(posts_, log, cfg, wed_21)
     assert first["id"] == posts_[0]["id"]
     log.mark(first["id"], "m1", wed_21)

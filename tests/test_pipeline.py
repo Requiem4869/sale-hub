@@ -73,3 +73,33 @@ def test_story_image_has_no_product_data(tmp_path):
     cfg = load_config()
     p = posts.make_story_image(_deals(cfg), cfg, NOW, tmp_path)
     assert p and p.exists() and p.stat().st_size > 10_000
+
+
+def test_feed_content_and_schedule(tmp_path):
+    from datetime import datetime, timezone
+    from bot import feed
+    from bot.compliance import check_info_text
+    cfg = load_config()
+    posts_ = feed.load_posts(ROOT / "content" / "feed.yaml")
+    assert len({p["id"] for p in posts_}) == len(posts_), "idが重複していない"
+    for p in posts_:
+        assert check_info_text(feed.caption_of(p)) == [], p["id"]
+        assert 1 <= len(p["slides"]) <= 10
+    counts = feed.render_all(posts_[:2], tmp_path, cfg)
+    assert all((tmp_path / "feed" / pid / "1.jpg").exists() for pid in counts)
+    for p in posts_:
+        p["approved"] = True
+    log = feed.FeedLog(tmp_path / "feed_posted.json")
+    wed_21 = datetime(2026, 10, 14, 12, 0, tzinfo=timezone.utc)   # 水曜 21:00 JST
+    wed_10 = datetime(2026, 10, 14, 1, 0, tzinfo=timezone.utc)    # 水曜 10:00 JST
+    thu_21 = datetime(2026, 10, 15, 12, 0, tzinfo=timezone.utc)   # 木曜
+    assert feed.next_due(posts_, log, cfg, wed_10) is None
+    assert feed.next_due(posts_, log, cfg, thu_21) is None
+    first = feed.next_due(posts_, log, cfg, wed_21)
+    assert first["id"] == posts_[0]["id"]
+    log.mark(first["id"], "m1", wed_21)
+    assert feed.next_due(posts_, log, cfg, wed_21) is None, "1日1件まで"
+    fri = datetime(2026, 10, 16, 12, 0, tzinfo=timezone.utc)
+    assert feed.next_due(posts_, log, cfg, fri)["id"] == posts_[1]["id"]
+    posts_[0]["approved"] = False
+    assert feed.next_due(posts_[:1], feed.FeedLog(tmp_path / "x.json"), cfg, wed_21) is None, "未承認は投稿しない"

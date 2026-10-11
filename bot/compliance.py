@@ -37,3 +37,18 @@ def check_sns_text(text: str, platform: str) -> list[str]:
     if platform == "instagram" and text.count("#") > 30:
         errors.append("ハッシュタグが30個を超えている")
     return errors
+
+
+def check_info_text(text: str) -> list[str]:
+    """商品リンクを含まない情報投稿用：PR表記は不要。価格表記と禁止表現だけ確認する。"""
+    errors = []
+    if re.search(r"(¥|￥|\d+\s*円|\d+\s*%|\d+％|OFF)", text, re.IGNORECASE):
+        errors.append("価格・割引率の表記がある")
+    for w in BANNED_PHRASES:
+        if w.lower() in text.lower():
+            errors.append(f"禁止表現『{w}』を含む")
+    if text.count("#") > 30:
+        errors.append("ハッシュタグが30個を超えている")
+    if len(text) > 2200:
+        errors.append("キャプションが2200文字を超えている")
+    return errors

@@ -1,15 +1,15 @@
-"""配信部：承認済み（approved: true）の下書きだけを投稿する。
+"""配信部：承認済みのものだけを投稿する。
 
 X:         POST https://api.x.com/2/tweets（OAuth 1.0a ユーザーコンテキスト）
            料金: 通常投稿 $0.015 / URL付き投稿 $0.20（2026年4月改定）
-Instagram: Graph API コンテンツ公開（ビジネス/クリエイターアカウント必須、24時間25件まで）
-           1) POST /{ig-user-id}/media  image_url=..., media_type=STORIES
-           2) POST /{ig-user-id}/media_publish  creation_id=...
+Instagram: Instagram API with Instagram Login（Facebookページ不要、プロアカウント）
+           https://graph.instagram.com/{ver}/{ig-user-id}/media → /media_publish の2段階
+           画像はJPEGを公開URLで渡す（GitHub Pages）。カルーセルは子コンテナ→親コンテナ→公開。
 """
 from __future__ import annotations
 
+import time
 from datetime import datetime
-from pathlib import Path
 
 import requests
 import yaml
@@ -17,9 +17,10 @@ import yaml
 from .compliance import check_sns_text
 from .config import secret
 
-GRAPH_VERSION = "v23.0"  # Meta側の現行バージョンに合わせて更新すること
+IG_API = "https://graph.instagram.com/v26.0"
 
 
+# ---------- X ----------
 def post_to_x(text: str) -> str:
     from requests_oauthlib import OAuth1
 
@@ -29,17 +30,71 @@ def post_to_x(text: str) -> str:
     return r.json()["data"]["id"]
 
 
-def post_story_to_instagram(image_url: str) -> str:
-    ig_id, token = secret("IG_USER_ID"), secret("IG_ACCESS_TOKEN")
-    base = f"https://graph.facebook.com/{GRAPH_VERSION}/{ig_id}"
-    r = requests.post(f"{base}/media", data={"image_url": image_url, "media_type": "STORIES", "access_token": token}, timeout=60)
+# ---------- Instagram ----------
+def _ig_token() -> str:
+    return secret("IG_ACCESS_TOKEN")
+
+
+def _ig_user_id() -> str:
+    uid = secret("IG_USER_ID", required=False)
+    if uid:
+        return uid
+    r = requests.get(f"{IG_API}/me", params={"fields": "user_id,username", "access_token": _ig_token()}, timeout=30)
     r.raise_for_status()
-    r2 = requests.post(f"{base}/media_publish", data={"creation_id": r.json()["id"], "access_token": token}, timeout=60)
-    r2.raise_for_status()
-    return r2.json()["id"]
+    return str(r.json()["user_id"])
 
 
-def publish_drafts(drafts_dir: Path, now: datetime, dry_run: bool = False) -> list[str]:
+def _ig_post(path: str, data: dict) -> dict:
+    r = requests.post(f"{IG_API}/{path}", data={**data, "access_token": _ig_token()}, timeout=60)
+    if r.status_code >= 400:
+        raise RuntimeError(f"Instagram API エラー {r.status_code}: {r.text[:500]}")
+    return r.json()
+
+
+def _ig_wait_ready(container_id: str, tries: int = 20) -> None:
+    for _ in range(tries):
+        r = requests.get(f"{IG_API}/{container_id}", params={"fields": "status_code", "access_token": _ig_token()}, timeout=30)
+        status = r.json().get("status_code")
+        if status == "FINISHED":
+            return
+        if status == "ERROR":
+            raise RuntimeError(f"Instagram側で画像の処理に失敗: {r.text[:300]}")
+        time.sleep(3)
+    raise RuntimeError("Instagram側の画像処理が時間内に終わりませんでした")
+
+
+def post_feed_to_instagram(urls: list[str], caption: str) -> str:
+    uid = _ig_user_id()
+    if len(urls) == 1:
+        cid = _ig_post(f"{uid}/media", {"image_url": urls[0], "caption": caption})["id"]
+    else:
+        children = []
+        for u in urls[:10]:  # カルーセルは最大10枚
+            children.append(_ig_post(f"{uid}/media", {"image_url": u, "is_carousel_item": "true"})["id"])
+        for c in children:
+            _ig_wait_ready(c)
+        cid = _ig_post(f"{uid}/media", {"media_type": "CAROUSEL", "children": ",".join(children), "caption": caption})["id"]
+    _ig_wait_ready(cid)
+    return _ig_post(f"{uid}/media_publish", {"creation_id": cid})["id"]
+
+
+def post_story_to_instagram(image_url: str) -> str:
+    uid = _ig_user_id()
+    cid = _ig_post(f"{uid}/media", {"image_url": image_url, "media_type": "STORIES"})["id"]
+    _ig_wait_ready(cid)
+    return _ig_post(f"{uid}/media_publish", {"creation_id": cid})["id"]
+
+
+def refresh_ig_token() -> dict:
+    """長期トークン（約60日）を延長する。発行から24時間以上経過・期限前である必要がある。"""
+    r = requests.get("https://graph.instagram.com/refresh_access_token",
+                     params={"grant_type": "ig_refresh_token", "access_token": _ig_token()}, timeout=30)
+    r.raise_for_status()
+    return r.json()
+
+
+# ---------- 下書き（X）の投稿 ----------
+def publish_drafts(drafts_dir, now: datetime, dry_run: bool = False) -> list[str]:
     results: list[str] = []
     for path in sorted(drafts_dir.glob("*-x-*.yaml")):
         d = yaml.safe_load(path.read_text(encoding="utf-8"))

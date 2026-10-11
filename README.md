@@ -56,3 +56,10 @@ python -m bot.cli status
 - `searchItems` のURLは `getItems` と同じ命名規則（`/catalog/v1/searchItems`）と想定
 - Instagram APIのストーリーズ投稿ではリンクスタンプを付けられない想定（プロフィールのリンクに誘導）
 - Graph APIのバージョン（`bot/publish.py` の `GRAPH_VERSION`）
+
+## Instagramの情報投稿（フィード・自動）
+- ネタのストック：`content/feed.yaml`（上から順に投稿。`approved: true` のものだけ）
+- 投稿日時：`config.yaml` の `feed_days`（月・水・金）と `feed_hour_jst`（20時以降の最初の実行）
+- 画像：毎時の実行で `public/feed/<id>/<n>.jpg` に描画され、GitHub Pagesで公開 → Instagram APIがそのURLから取得
+- 確認：`python -m bot.cli preview-feed` で `preview/` に一覧画像を出力
+- 必要なSecrets：`IG_ACCESS_TOKEN`（長期トークン、約60日ごとに更新）、`IG_USER_ID`（任意）

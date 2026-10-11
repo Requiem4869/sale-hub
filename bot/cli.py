@@ -141,6 +141,22 @@ def cmd_check_ig(args, cfg) -> None:
     print(f"投稿枠: {q.text[:300]}")
 
 
+def cmd_refresh_ig(args, cfg) -> None:
+    """長期トークンの有効期限を延長する。文字列が変わった場合は、Secretの更新が必要なので失敗扱いにして知らせる。"""
+    import hashlib
+    from .config import secret
+    from .publish import refresh_ig_token
+
+    old = secret("IG_ACCESS_TOKEN")
+    res = refresh_ig_token()
+    days = int(res.get("expires_in", 0)) // 86400
+    if res.get("access_token") and res["access_token"] != old:
+        print(f"要対応: 新しいトークンが発行されました（有効 約{days}日）。GitHubのSecret IG_ACCESS_TOKEN を更新してください。")
+        print("新トークンの先頭8文字のハッシュ:", hashlib.sha256(res["access_token"].encode()).hexdigest()[:8])
+        raise SystemExit(1)
+    print(f"OK: トークンの有効期限を延長しました（残り 約{days}日）")
+
+
 def cmd_preview_feed(args, cfg) -> None:
     from PIL import Image
 
@@ -164,9 +180,10 @@ def main() -> None:
     sub.add_parser("status")
     sub.add_parser("preview-feed")
     sub.add_parser("check-ig")
+    sub.add_parser("refresh-ig")
     args = ap.parse_args()
     cfg = load_config()
-    {"run": cmd_run, "publish": cmd_publish, "status": cmd_status, "preview-feed": cmd_preview_feed, "check-ig": cmd_check_ig}[args.cmd](args, cfg)
+    {"run": cmd_run, "publish": cmd_publish, "status": cmd_status, "preview-feed": cmd_preview_feed, "check-ig": cmd_check_ig, "refresh-ig": cmd_refresh_ig}[args.cmd](args, cfg)
 
 
 if __name__ == "__main__":

@@ -3,7 +3,7 @@
 # 画像はプログラムが自動で描画する（public/feed/<id>/1.jpg, 2.jpg ...）
 
 - id: pumps-comfort
-  approved: false
+  approved: true
   caption: |
     通勤パンプスで足が疲れにくくなる選び方を4つにまとめました。
 
@@ -23,7 +23,7 @@
     - {type: closing, title: "靴・バッグのセール情報を毎日お届け", body: "Amazonで見つけたお得なアイテムを、ストーリーズでお知らせしています。"}
 
 - id: tote-choose
-  approved: false
+  approved: true
   caption: |
     通勤用のトートバッグ、選ぶときに見ておきたいポイントをまとめました。
 
@@ -43,7 +43,7 @@
     - {type: closing, title: "靴・バッグのセール情報を毎日お届け", body: "Amazonで見つけたお得なアイテムを、ストーリーズでお知らせしています。"}
 
 - id: wallet-types
-  approved: false
+  approved: true
   caption: |
     お財布の形、どれを選べばいいか迷っていませんか？
     長財布・二つ折り・ミニ財布の違いを比べてみました。
@@ -58,7 +58,7 @@
     - {type: closing, title: "靴・バッグ・お財布のセール情報を毎日お届け", body: "Amazonで見つけたお得なアイテムを、ストーリーズでお知らせしています。"}
 
 - id: sneaker-kireime
-  approved: false
+  approved: true
   caption: |
     スニーカーをきれいめに履くコツを3つにまとめました。
 
@@ -76,7 +76,7 @@
     - {type: closing, title: "靴・バッグのセール情報を毎日お届け", body: "Amazonで見つけたお得なアイテムを、ストーリーズでお知らせしています。"}
 
 - id: rainy-shoes
-  approved: false
+  approved: true
   caption: |
     雨の日の靴選び、どうしていますか？
     濡れても困らない靴を選ぶポイントをまとめました。
@@ -91,7 +91,7 @@
     - {type: closing, title: "靴・バッグのセール情報を毎日お届け", body: "Amazonで見つけたお得なアイテムを、ストーリーズでお知らせしています。"}
 
 - id: boots-types
-  approved: false
+  approved: true
   caption: |
     秋冬に活躍するブーツ、タイプ別に合わせやすい服をまとめました。
 
@@ -104,7 +104,7 @@
     - {type: closing, title: "秋冬のセール情報もお届けします", body: "ブーツのセールが始まったら、ストーリーズでお知らせします。"}
 
 - id: shoe-care
-  approved: false
+  approved: true
   caption: |
     お気に入りの靴を長く履くための、お手入れの基本です。
 
@@ -122,7 +122,7 @@
     - {type: closing, title: "靴・バッグのセール情報を毎日お届け", body: "お手入れグッズのセール情報もお知らせします。"}
 
 - id: bag-color
-  approved: false
+  approved: true
   caption: |
     バッグの色選び、迷ったときの考え方です。
 
@@ -136,7 +136,7 @@
     - {type: closing, title: "靴・バッグのセール情報を毎日お届け", body: "Amazonで見つけたお得なアイテムを、ストーリーズでお知らせしています。"}
 
 - id: amazon-check
-  approved: false
+  approved: true
   caption: |
     Amazonで靴やバッグを買う前に、確認しておきたいポイントをまとめました。
 
@@ -154,7 +154,7 @@
     - {type: closing, title: "靴・バッグのセール情報を毎日お届け", body: "Amazonで見つけたお得なアイテムを、ストーリーズでお知らせしています。"}
 
 - id: black-friday-prep
-  approved: false
+  approved: true
   caption: |
     Amazonのブラックフライデーに向けて、今のうちにやっておきたい準備です。
 
@@ -172,7 +172,7 @@
     - {type: closing, title: "セール開始をお知らせします", body: "フォローしておくと、ブラックフライデーのお得情報を見逃しません。"}
 
 - id: autumn-commute
-  approved: false
+  approved: true
   caption: |
     秋冬の通勤コーデに合わせやすい靴のタイプをまとめました。
 
@@ -186,7 +186,7 @@
     - {type: closing, title: "靴・バッグのセール情報を毎日お届け", body: "Amazonで見つけたお得なアイテムを、ストーリーズでお知らせしています。"}
 
 - id: shoulder-strap
-  approved: false
+  approved: true
   caption: |
     ショルダーバッグ、ストラップの長さで印象が変わります。
 

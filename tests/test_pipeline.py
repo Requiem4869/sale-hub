@@ -96,7 +96,7 @@ def test_feed_content_and_schedule(tmp_path):
     wed_10 = datetime(2026, 10, 14, 1, 0, tzinfo=timezone.utc)    # 水曜 10:00 JST
     thu_21 = datetime(2026, 10, 15, 12, 0, tzinfo=timezone.utc)   # 木曜
     assert feed.next_due(posts_, log, cfg, wed_10) is None
-    assert feed.next_due(posts_, log, cfg, thu_21)["id"] == "pr-commute-totes", "日付指定の投稿は曜日に関係なく出る"
+    assert feed.next_due(posts_, log, cfg, thu_21)["id"] == "pr-autumn-bags", "日付指定の投稿は曜日に関係なく出る"
     thu_other = datetime(2026, 10, 22, 12, 0, tzinfo=timezone.utc)   # 日付指定のない木曜
     assert feed.next_due(posts_, log, cfg, thu_other) is None
     first = feed.next_due(posts_, log, cfg, wed_21)

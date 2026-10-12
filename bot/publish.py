@@ -51,16 +51,21 @@ def _ig_post(path: str, data: dict) -> dict:
     return r.json()
 
 
-def _ig_wait_ready(container_id: str, tries: int = 20) -> None:
+def _ig_wait_ready(container_id: str, tries: int = 30, interval: int = 10) -> None:
+    """コンテナの処理完了を待つ（Metaの推奨は1分おき・最大5分。ここでは10秒おき・最大5分）。"""
+    last = ""
     for _ in range(tries):
-        r = requests.get(f"{IG_API}/{container_id}", params={"fields": "status_code", "access_token": _ig_token()}, timeout=30)
-        status = r.json().get("status_code")
-        if status == "FINISHED":
+        r = requests.get(f"{IG_API}/{container_id}", params={"fields": "status_code,status", "access_token": _ig_token()}, timeout=30)
+        last = f"HTTP {r.status_code}: {r.text[:300]}"
+        print(f"  コンテナ {container_id}: {last}", flush=True)
+        body = r.json() if r.headers.get("content-type", "").startswith(("application/json", "text/javascript")) else {}
+        status = body.get("status_code")
+        if status in ("FINISHED", "PUBLISHED"):
             return
-        if status == "ERROR":
-            raise RuntimeError(f"Instagram側で画像の処理に失敗: {r.text[:300]}")
-        time.sleep(3)
-    raise RuntimeError("Instagram側の画像処理が時間内に終わりませんでした")
+        if status in ("ERROR", "EXPIRED") or "error" in body:
+            raise RuntimeError(f"Instagram側で画像の処理に失敗: {last}")
+        time.sleep(interval)
+    raise RuntimeError(f"Instagram側の画像処理が時間内に終わりませんでした（最後の応答 {last}）")
 
 
 def post_feed_to_instagram(urls: list[str], caption: str) -> str:
@@ -71,6 +76,7 @@ def post_feed_to_instagram(urls: list[str], caption: str) -> str:
         children = []
         for u in urls[:10]:  # カルーセルは最大10枚
             children.append(_ig_post(f"{uid}/media", {"image_url": u, "is_carousel_item": "true"})["id"])
+            print(f"  子コンテナ作成 {u} → {children[-1]}", flush=True)
         for c in children:
             _ig_wait_ready(c)
         cid = _ig_post(f"{uid}/media", {"media_type": "CAROUSEL", "children": ",".join(children), "caption": caption})["id"]

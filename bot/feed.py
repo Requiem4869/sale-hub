@@ -48,24 +48,33 @@ class FeedLog:
         self.path.write_text(json.dumps(self.data, ensure_ascii=False, indent=1))
 
 
+QUIET_UNTIL = 7  # 0:00〜6:59 JST は投稿しない（深夜の取りこぼし分は朝以降に回す）
+
+
 def next_due(posts: list[dict], log: FeedLog, cfg: dict, now: datetime) -> dict | None:
     """投稿すべきものを1件返す（1日1件まで）。
     - date 指定のある投稿：その日の指定時刻以降に投稿（曜日に関係なく優先）
     - date 指定のない投稿：指定曜日の指定時刻以降に、上から順に投稿
+    - 取りこぼし救済：GitHub Actions の定期実行は数時間遅れることがあるため、
+      前日の枠で投稿できなかった分は翌日 7:00 以降に投稿する（翌日中まで）
     """
     ig = cfg["publishing"]["instagram"]
     local = now.astimezone(JST)
-    if local.hour < ig.get("feed_hour_jst", 20) or log.posted_today(now):
+    if local.hour < QUIET_UNTIL or log.posted_today(now):
         return None
-    today = local.date().isoformat()
-    for p in posts:
-        if p.get("approved") and p["id"] not in log.data and str(p.get("date", "")) == today:
-            return p
-    if local.weekday() not in {DAYS[d] for d in ig.get("feed_days", [])}:
-        return None
-    for p in posts:
-        if p.get("approved") and p["id"] not in log.data and not p.get("date"):
-            return p
+    today = local.date()
+    yesterday = today - timedelta(days=1)
+    feed_days = {DAYS[d] for d in ig.get("feed_days", [])}
+    posted_dates = {v["posted_at"][:10] for v in log.data.values()}
+    slots = ([today] if local.hour >= ig.get("feed_hour_jst", 20) else []) + [yesterday]
+    for day in slots:
+        for p in posts:
+            if p.get("approved") and p["id"] not in log.data and str(p.get("date", "")) == day.isoformat():
+                return p
+        if day.weekday() in feed_days and day.isoformat() not in posted_dates:
+            for p in posts:
+                if p.get("approved") and p["id"] not in log.data and not p.get("date"):
+                    return p
     return None
 
 

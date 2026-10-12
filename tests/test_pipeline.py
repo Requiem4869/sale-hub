@@ -97,8 +97,18 @@ def test_feed_content_and_schedule(tmp_path):
     thu_21 = datetime(2026, 10, 15, 12, 0, tzinfo=timezone.utc)   # 木曜
     assert feed.next_due(posts_, log, cfg, wed_10) is None
     assert feed.next_due(posts_, log, cfg, thu_21)["id"] == "pr-autumn-bags", "日付指定の投稿は曜日に関係なく出る"
-    thu_other = datetime(2026, 10, 22, 12, 0, tzinfo=timezone.utc)   # 日付指定のない木曜
-    assert feed.next_due(posts_, log, cfg, thu_other) is None
+    thu_other = datetime(2026, 10, 22, 12, 0, tzinfo=timezone.utc)   # 日付指定のない木曜（前日の水曜は未投稿）
+    assert feed.next_due(posts_, log, cfg, thu_other)["id"] == posts_[0]["id"], "前日の取りこぼしは翌日に救済"
+    tue_03 = datetime(2026, 10, 12, 18, 0, tzinfo=timezone.utc)      # 火曜 3:00 JST
+    tue_09 = datetime(2026, 10, 13, 0, 0, tzinfo=timezone.utc)       # 火曜 9:00 JST
+    tue_21 = datetime(2026, 10, 13, 12, 0, tzinfo=timezone.utc)
+    assert feed.next_due(posts_, log, cfg, tue_03) is None, "深夜は投稿しない"
+    assert feed.next_due(posts_, log, cfg, tue_09)["id"] == posts_[0]["id"], "月曜分を火曜の朝に救済"
+    mon_log = feed.FeedLog(tmp_path / "mon.json")
+    mon_log.mark("x", "m0", datetime(2026, 10, 12, 11, 30, tzinfo=timezone.utc))  # 月曜 20:30 に投稿済み
+    assert feed.next_due(posts_, mon_log, cfg, tue_21) is None, "月曜に出ていれば火曜は何もしない"
+    sat_lost = datetime(2026, 10, 19, 13, 0, tzinfo=timezone.utc)    # 月曜 22:00：10/17 の日付指定は2日前なので救済しない
+    assert feed.next_due([p for p in posts_ if p.get("date")], feed.FeedLog(tmp_path / "y.json"), cfg, sat_lost) is None
     first = feed.next_due(posts_, log, cfg, wed_21)
     assert first["id"] == posts_[0]["id"]
     log.mark(first["id"], "m1", wed_21)

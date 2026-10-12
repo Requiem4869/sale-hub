@@ -8,6 +8,11 @@ on:
     # 10分おきに起動して、どれか1回が当たれば投稿できるようにする（1日1件の制限はコード側で担保）
     - cron: "3,13,23,33,43,53 11-14 * * *"
   workflow_dispatch: {}       # 手動実行ボタン
+  # 外部からの確実な起動：Claudeのスケジュールタスクが毎日20:05 JSTに trigger/ を更新してpushする
+  # （GitHubの定期実行は混雑時に数時間間引かれるため）。bot自身のpushではこの起動は発生しない
+  push:
+    branches: [main]
+    paths: ["trigger/**"]
 
 permissions:
   contents: write

@@ -1,0 +1,32 @@
+# 毎朝：Instagramの数字（フォロワー・投稿ごとのリーチ/保存など）を集めて state/insights.json に記録する
+name: insights
+on:
+  schedule:
+    - cron: "37 22 * * *"   # 毎日 7:37 JST（間引かれても1日のどこかで動けばよい）
+  workflow_dispatch: {}
+permissions:
+  contents: write
+concurrency:
+  group: hourly-operations   # 投稿の実行と記録の書き込みがぶつからないように同じ列に並ぶ
+  cancel-in-progress: false
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: 数字を集める
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+        run: python -m bot.cli insights
+      - name: 記録を保存
+        run: |
+          git config user.name "deals-bot"
+          git config user.email "deals-bot@users.noreply.github.com"
+          git add state/insights.json
+          git diff --cached --quiet || git commit -m "bot: insights $(date -u +%F)"
+          git pull --rebase -q origin main
+          git push

@@ -4,6 +4,7 @@
   python -m bot.cli publish [--dry-run] 承認済み下書きの投稿＋ストーリーズ投稿
   python -m bot.cli status              下書きの状況を表示
   python -m bot.cli preview-feed        情報投稿の画像を一覧画像にまとめる（確認用）
+  python -m bot.cli insights            Instagramの数字を集めて state/insights.json に記録
 """
 from __future__ import annotations
 
@@ -143,6 +144,12 @@ def cmd_check_ig(args, cfg) -> None:
     print(f"投稿枠: {q.text[:300]}")
 
 
+def cmd_insights(args, cfg) -> None:
+    from . import insights
+    snap = insights.collect(FEED_STATE, ROOT / "state" / "insights.json", datetime.now(timezone.utc))
+    print(insights.summary(snap))
+
+
 def cmd_refresh_ig(args, cfg) -> None:
     """長期トークンの有効期限を延長する。文字列が変わった場合は、Secretの更新が必要なので失敗扱いにして知らせる。"""
     import hashlib
@@ -183,9 +190,10 @@ def main() -> None:
     sub.add_parser("preview-feed")
     sub.add_parser("check-ig")
     sub.add_parser("refresh-ig")
+    sub.add_parser("insights")
     args = ap.parse_args()
     cfg = load_config()
-    {"run": cmd_run, "publish": cmd_publish, "status": cmd_status, "preview-feed": cmd_preview_feed, "check-ig": cmd_check_ig, "refresh-ig": cmd_refresh_ig}[args.cmd](args, cfg)
+    {"run": cmd_run, "publish": cmd_publish, "status": cmd_status, "preview-feed": cmd_preview_feed, "check-ig": cmd_check_ig, "refresh-ig": cmd_refresh_ig, "insights": cmd_insights}[args.cmd](args, cfg)
 
 
 if __name__ == "__main__":

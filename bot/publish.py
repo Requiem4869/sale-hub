@@ -84,6 +84,18 @@ def post_feed_to_instagram(urls: list[str], caption: str) -> str:
     return _ig_post(f"{uid}/media_publish", {"creation_id": cid})["id"]
 
 
+def post_reel_to_instagram(video_url: str, caption: str, cover_url: str | None = None) -> str:
+    """リールを投稿する（フィードにも表示）。動画の処理は数分かかることがあるので最大10分待つ。"""
+    uid = _ig_user_id()
+    data = {"media_type": "REELS", "video_url": video_url, "caption": caption, "share_to_feed": "true"}
+    if cover_url:
+        data["cover_url"] = cover_url
+    cid = _ig_post(f"{uid}/media", data)["id"]
+    print(f"  リールのコンテナ作成 → {cid}", flush=True)
+    _ig_wait_ready(cid, tries=40, interval=15)
+    return _ig_post(f"{uid}/media_publish", {"creation_id": cid})["id"]
+
+
 def post_story_to_instagram(image_url: str) -> str:
     uid = _ig_user_id()
     cid = _ig_post(f"{uid}/media", {"image_url": image_url, "media_type": "STORIES"})["id"]

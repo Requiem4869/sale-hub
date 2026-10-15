@@ -33,7 +33,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: sudo apt-get install -y fonts-noto-cjk fonts-noto-cjk-extra > /dev/null
+      - run: sudo apt-get install -y fonts-noto-cjk fonts-noto-cjk-extra ffmpeg > /dev/null
       - run: pip install -r requirements.txt
 
       - name: 自動チェック（テスト）

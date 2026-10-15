@@ -27,8 +27,20 @@ def render_all(posts: list[dict], public_dir: Path, cfg: dict) -> dict[str, int]
     handle = cfg["brand"].get("instagram_handle", "")
     counts = {}
     for p in posts:
-        counts[p["id"]] = len(render_post(p, public_dir / "feed" / p["id"], brand, handle))
+        paths = render_post(p, public_dir / "feed" / p["id"], brand, handle)
+        counts[p["id"]] = len(paths)
+        if p.get("format") == "reel":
+            from .reel import make_reel
+            make_reel(paths, public_dir / "feed" / p["id"], reel_title(p))
     return counts
+
+
+def reel_title(post: dict) -> str:
+    """リール上部に出す見出し。reel_title があればそれ、なければ表紙のタイトルをつなげたもの。"""
+    if post.get("reel_title"):
+        return post["reel_title"]
+    cover = post["slides"][0]
+    return "".join(t.replace("\n", "") for t in cover.get("title", []))[:22]
 
 
 class FeedLog:
@@ -80,6 +92,11 @@ def next_due(posts: list[dict], log: FeedLog, cfg: dict, now: datetime) -> dict 
 
 def caption_of(post: dict) -> str:
     return post["caption"].rstrip() + "\n\n" + " ".join(post.get("hashtags", []))
+
+
+def reel_urls(post_id: str, site_url: str) -> tuple[str, str]:
+    base = site_url.rstrip("/")
+    return f"{base}/feed/{post_id}/reel.mp4", f"{base}/feed/{post_id}/cover.jpg"
 
 
 def image_urls(post_id: str, count: int, site_url: str) -> list[str]:

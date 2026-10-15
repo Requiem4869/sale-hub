@@ -68,7 +68,7 @@ def cmd_run(args, cfg) -> None:
 def cmd_publish(args, cfg) -> None:
     from .compliance import check_info_text
     from .config import secret
-    from .publish import post_feed_to_instagram, post_story_to_instagram, publish_drafts
+    from .publish import post_feed_to_instagram, post_reel_to_instagram, post_story_to_instagram, publish_drafts
 
     now = datetime.now(timezone.utc)
     for line in publish_drafts(DRAFTS, now, dry_run=args.dry_run):
@@ -93,10 +93,15 @@ def cmd_publish(args, cfg) -> None:
                     print(f"情報投稿 差し戻し {post['id']}: {', '.join(errors)}")
                 else:
                     urls = feed.image_urls(post["id"], len(post["slides"]), cfg["publishing"]["site_url"])
+                    is_reel = post.get("format") == "reel"
                     if args.dry_run:
-                        print(f"[dry-run] 情報投稿予定 {post['id']}（{len(urls)}枚）")
+                        print(f"[dry-run] 情報投稿予定 {post['id']}（{'リール' if is_reel else f'{len(urls)}枚'}）")
                     else:
-                        media_id = post_feed_to_instagram(urls, cap)
+                        if is_reel:
+                            video, cover = feed.reel_urls(post["id"], cfg["publishing"]["site_url"])
+                            media_id = post_reel_to_instagram(video, cap, cover)
+                        else:
+                            media_id = post_feed_to_instagram(urls, cap)
                         log.mark(post["id"], media_id, now)
                         log.save()
                         print(f"情報投稿 {post['id']} → {media_id}")

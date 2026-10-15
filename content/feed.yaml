@@ -44,6 +44,7 @@
 
 - id: wallet-types
   approved: true
+  format: reel   # リールの試験投稿（10/16）
   caption: |
     お財布の形、どれを選べばいいか迷っていませんか？
     長財布・二つ折り・ミニ財布の違いを比べてみました。

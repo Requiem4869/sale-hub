@@ -82,7 +82,7 @@ def _footer(d, left: str, i: int, n: int):
         d.text((W - 72 - d.textlength(s, font=font("bold", 30)), H - 110), s, font=font("bold", 30), fill=PINK)
 
 
-def render_slide(s: dict, i: int, n: int, brand: str, handle: str, pr: bool = False) -> Image.Image:
+def render_slide(s: dict, i: int, n: int, brand: str, handle: str, pr: bool = False, swipe: bool = True) -> Image.Image:
     im, d = _base(brand, handle, pr)
     kind = s["type"]
     maxw = W - 144
@@ -98,7 +98,7 @@ def render_slide(s: dict, i: int, n: int, brand: str, handle: str, pr: bool = Fa
             d.text((72, y), f"{k:02d}", font=font("black", 56), fill=PINK)
             _para(d, 180, y + 10, b, font("bold", 42), INK, maxw - 120, 56)
             y += 104
-        _footer(d, "スワイプで詳しく →" if n > 1 else s.get("footer", ""), i, n)
+        _footer(d, ("スワイプで詳しく →" if swipe else "保存して、あとで見返してね") if n > 1 else s.get("footer", ""), i, n)
     elif kind == "point":
         d.text((72, 280), s["num"], font=font("black", 170), fill=PINK)
         y = _para(d, 72, 520, s["heading"], font("black", 70), INK, maxw, 94)
@@ -145,6 +145,6 @@ def render_post(post: dict, out_dir: Path, brand: str, handle: str) -> list[Path
     paths = []
     for i, s in enumerate(slides, 1):
         p = out_dir / f"{i}.jpg"
-        render_slide(s, i, len(slides), brand, handle, bool(post.get("pr"))).save(p, "JPEG", quality=90, optimize=True)
+        render_slide(s, i, len(slides), brand, handle, bool(post.get("pr")), post.get("format") != "reel").save(p, "JPEG", quality=90, optimize=True)
         paths.append(p)
     return paths

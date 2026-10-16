@@ -27,7 +27,7 @@
  },
  "2026-10-16": {
   "followers": 0,
-  "media_count": 6,
+  "media_count": 7,
   "posts": {
    "pumps-comfort": {
     "posted_at": "2026-10-12T21:27+09:00",
@@ -58,6 +58,16 @@
     "shares": 0,
     "total_interactions": 0,
     "views": 0
+   },
+   "wallet-types": {
+    "posted_at": "2026-10-16T20:07+09:00",
+    "reach": 2,
+    "saved": 0,
+    "likes": 0,
+    "comments": 0,
+    "shares": 0,
+    "total_interactions": 0,
+    "views": 4
    }
   }
  }

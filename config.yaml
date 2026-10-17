@@ -46,6 +46,8 @@ publishing:
     feed_enabled: true        # 情報投稿（content/feed.yaml）を自動投稿する
     feed_days: ["mon", "wed", "fri"]
     feed_hour_jst: 20         # この時刻以降の最初の実行で投稿
+    info_format: reel        # 情報投稿の既定の形式（reel / carousel）。10/18〜リールに切替（スライドはリーチ0だったため）
+    pr_format: carousel      # PR投稿の既定の形式
 
 brand:
   instagram_url: "https://www.instagram.com/trend.information/"

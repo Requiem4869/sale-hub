@@ -22,14 +22,25 @@ def load_posts(path: Path) -> list[dict]:
     return yaml.safe_load(path.read_text(encoding="utf-8")) or []
 
 
-def render_all(posts: list[dict], public_dir: Path, cfg: dict) -> dict[str, int]:
+def apply_format_defaults(posts: list[dict], cfg: dict) -> list[dict]:
+    """format 未指定の投稿に既定の形式を入れる（情報投稿は info_format、PR投稿は pr_format）。"""
+    ig = cfg["publishing"]["instagram"]
+    for p in posts:
+        if not p.get("format"):
+            p["format"] = ig.get("pr_format" if p.get("pr") else "info_format", "carousel")
+    return posts
+
+
+def render_all(posts: list[dict], public_dir: Path, cfg: dict, skip_reels: set | None = None) -> dict[str, int]:
+    """skip_reels: 投稿済みなど動画を作らなくてよい投稿のid（毎時の処理時間を抑える）。"""
+    apply_format_defaults(posts, cfg)
     brand = cfg["brand"]["account_name"].split("｜")[0]
     handle = cfg["brand"].get("instagram_handle", "")
     counts = {}
     for p in posts:
         paths = render_post(p, public_dir / "feed" / p["id"], brand, handle)
         counts[p["id"]] = len(paths)
-        if p.get("format") == "reel":
+        if p.get("format") == "reel" and p["id"] not in (skip_reels or set()):
             from .reel import make_reel
             make_reel(paths, public_dir / "feed" / p["id"], reel_title(p))
     return counts

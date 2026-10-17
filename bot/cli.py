@@ -48,7 +48,7 @@ def cmd_run(args, cfg) -> None:
     print(f"サイト生成: 自動 {len(deals)}件 / 手動 {len(picks)}件")
 
     if FEED_YAML.exists():
-        counts = feed.render_all(feed.load_posts(FEED_YAML), PUBLIC, cfg)
+        counts = feed.render_all(feed.load_posts(FEED_YAML), PUBLIC, cfg, skip_reels=set(feed.FeedLog(FEED_STATE).data))
         print(f"情報投稿の画像: {len(counts)}件分を生成")
 
     if cfg["publishing"]["instagram"]["enabled"] and deals:
@@ -80,7 +80,7 @@ def cmd_publish(args, cfg) -> None:
             print("情報投稿: Instagramのトークン未設定のためスキップ")
         else:
             log = feed.FeedLog(FEED_STATE)
-            posts_ = feed.load_posts(FEED_YAML)
+            posts_ = feed.apply_format_defaults(feed.load_posts(FEED_YAML), cfg)
             post = feed.next_due(posts_, log, cfg, now)
             if not post:
                 print("情報投稿: 今は投稿枠ではない、または承認済みのストックがない")

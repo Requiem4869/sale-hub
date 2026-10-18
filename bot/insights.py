@@ -38,6 +38,20 @@ def media_insights(media_id: str) -> dict:
     return out
 
 
+ACCOUNT_METRICS = ["reach", "profile_views", "website_clicks", "profile_links_taps", "accounts_engaged", "views"]
+
+
+def account_insights(user_id: str) -> dict:
+    """アカウント全体の前日分（プロフィール閲覧・リンクのタップなど）。取れない指標は飛ばす。"""
+    out: dict = {}
+    for m in ACCOUNT_METRICS:
+        r = _get(f"{user_id}/insights", {"metric": m, "period": "day", "metric_type": "total_value"})
+        if r.status_code == 200 and r.json().get("data"):
+            d = r.json()["data"][0]
+            out[m] = d.get("total_value", {}).get("value", (d.get("values") or [{}])[-1].get("value"))
+    return out
+
+
 def collect(feed_state: Path, out_path: Path, now: datetime) -> dict:
     me = _get("me", {"fields": "user_id,username,followers_count,media_count"})
     if me.status_code != 200:
@@ -47,7 +61,8 @@ def collect(feed_state: Path, out_path: Path, now: datetime) -> dict:
     posts = {}
     for pid, rec in posted.items():
         posts[pid] = {"posted_at": rec["posted_at"], **media_insights(rec["media_id"])}
-    snap = {"followers": acc.get("followers_count"), "media_count": acc.get("media_count"), "posts": posts}
+    snap = {"followers": acc.get("followers_count"), "media_count": acc.get("media_count"),
+            "account_day": account_insights(str(acc["user_id"])), "posts": posts}
     data = json.loads(out_path.read_text()) if out_path.exists() else {}
     data[now.astimezone(JST).date().isoformat()] = snap
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -56,7 +71,7 @@ def collect(feed_state: Path, out_path: Path, now: datetime) -> dict:
 
 
 def summary(snap: dict) -> str:
-    lines = [f"フォロワー {snap['followers']} ／ 投稿数 {snap['media_count']}"]
+    lines = [f"フォロワー {snap['followers']} ／ 投稿数 {snap['media_count']}", f"アカウント（直近1日）: {snap.get('account_day')}"]
     for pid, m in snap["posts"].items():
         lines.append(f"- {pid}（{m['posted_at'][:10]}）: リーチ {m.get('reach', '-')} / 保存 {m.get('saved', '-')} / "
                      f"いいね {m.get('likes', '-')} / コメント {m.get('comments', '-')} / シェア {m.get('shares', '-')}")

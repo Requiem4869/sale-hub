@@ -106,9 +106,26 @@ def build_site(out_dir: Path, cfg: dict, deals: list[Deal], manual_picks: list[d
 <p class="ts">※開催時期は例年の目安です。年によって変わります。</p>
 <h2>Amazonで靴やバッグを買うときのコツ</h2><ol class="tips">{tips}</ol>
 </main>
-<footer id="disclaimer"><p>{ASSOCIATE_NOTICE}</p><p>{PRICE_DISCLAIMER}</p><p>{CONTENT_DISCLAIMER}</p></footer>
+<footer id="disclaimer"><p>{ASSOCIATE_NOTICE}</p><p><a href="privacy.html">プライバシーポリシー</a></p><p>{PRICE_DISCLAIMER}</p><p>{CONTENT_DISCLAIMER}</p></footer>
 </body></html>"""
     out_dir.mkdir(parents=True, exist_ok=True)
     path = out_dir / "index.html"
     path.write_text(page, encoding="utf-8")
+    (out_dir / "privacy.html").write_text(_privacy_page(name), encoding="utf-8")
     return path
+
+
+def _privacy_page(name: str) -> str:
+    """プライバシーポリシー（Pinterest等のAPI申請に必要）。"""
+    items = [
+        ("収集する情報", "当サイトは、閲覧者の氏名・メールアドレスなどの個人情報を収集しません。お問い合わせフォームやコメント機能もありません。"),
+        ("アクセス解析・Cookie", "当サイト自体はCookieを使用しません。ホスティング（GitHub Pages）の提供元がアクセスログを取得する場合があります。"),
+        ("アフィリエイト", "当サイトはAmazonアソシエイト・プログラムに参加しています。Amazonへのリンクを経由して購入された場合、Amazonが購入の計測のためにCookieを使用することがあります。詳しくはAmazonのプライバシー規約をご確認ください。"),
+        ("SNS連携", "当サイトの運営者は、自身のInstagram・Pinterestアカウントへの投稿のために各社のAPIを使用します。取得するのは運営者自身のアカウントの投稿・統計情報のみで、閲覧者の情報は取得しません。"),
+        ("お問い合わせ", "本ポリシーに関するお問い合わせは、Instagramアカウント（@trend.information）のメッセージからお願いします。"),
+    ]
+    body = "".join(f"<h2>{html.escape(h)}</h2><p>{html.escape(t)}</p>" for h, t in items)
+    return f"""<!doctype html><html lang="ja"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>プライバシーポリシー｜{name}</title>
+<style>{CSS}</style></head><body><header><h1>プライバシーポリシー</h1><p class="updated">制定日：2026年10月19日</p></header>
+<main>{body}<p><a href="./">トップへ戻る</a></p></main></body></html>"""

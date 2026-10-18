@@ -264,7 +264,7 @@
     - {type: closing, title: "商品はプロフィールの\nリンクから", body: "まとめページに掲載しています。価格や在庫は変わることがあるので、購入前にAmazonでご確認ください。", button: "プロフィールのリンクをタップ"}
 
 - id: pr-prime-reel
-  approved: false
+  approved: true
   pr: true
   format: reel
   date: "2026-10-18"

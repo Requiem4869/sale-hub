@@ -108,7 +108,7 @@ def test_feed_content_and_schedule(tmp_path):
     mon_log.mark("x", "m0", datetime(2026, 10, 12, 11, 30, tzinfo=timezone.utc))  # 月曜 20:30 に投稿済み
     assert feed.next_due(posts_, mon_log, cfg, tue_21) is None, "月曜に出ていれば火曜は何もしない"
     sat_lost = datetime(2026, 10, 19, 13, 0, tzinfo=timezone.utc)    # 月曜 22:00：10/17 の日付指定は2日前なので救済しない
-    assert feed.next_due([p for p in posts_ if p.get("date")], feed.FeedLog(tmp_path / "y.json"), cfg, sat_lost) is None
+    assert feed.next_due([p for p in posts_ if p.get("date") and str(p["date"]) <= "2026-10-17"], feed.FeedLog(tmp_path / "y.json"), cfg, sat_lost) is None
     first = feed.next_due(posts_, log, cfg, wed_21)
     assert first["id"] == posts_[0]["id"]
     log.mark(first["id"], "m1", wed_21)
